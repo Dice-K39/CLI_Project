@@ -1,5 +1,6 @@
 class API
-    URL = URI("https://rawg-video-games-database.p.rapidapi.com/games?search=\"Doom Eternal\"")
+    URL = URI("https://rawg-video-games-database.p.rapidapi.com/games?search=Doom Eternal")
+    # URL = URI("https://rawg-video-games-database.p.rapidapi.com/games/doom-eternal")
 
     def self.get_games
         search_key = gets.chomp
@@ -13,9 +14,14 @@ class API
         
         response = http.request(request)
         data = JSON.parse(response.body)
-        binding.pry
+        
         data["results"].each.with_index(1) do |game, i|
-            puts "#{i}. #{game["name"]}"
+            name = game["name"]
+            slug = game["slug"]
+
+            Game.new(name, slug)
         end
+
+        binding.pry
     end
 end
