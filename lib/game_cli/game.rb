@@ -12,6 +12,7 @@ class Game
         @recommended_rating = recommended_rating
         @meh_rating = meh_rating
         @skip_rating = skip_rating
+        
         @@all << self
     end
 
