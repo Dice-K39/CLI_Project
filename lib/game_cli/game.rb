@@ -12,11 +12,15 @@ class Game
         @recommended_rating = recommended_rating
         @meh_rating = meh_rating
         @skip_rating = skip_rating
-        
+
         @@all << self
     end
 
     def self.all
         @@all
+    end
+
+    def self.sort_games
+        @@all.each.sort {|a, b| a.name <=> b.name}
     end
 end

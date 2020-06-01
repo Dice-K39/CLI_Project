@@ -20,7 +20,5 @@ class API
 
             Game.new(name, slug)
         end
-
-        binding.pry
     end
 end
