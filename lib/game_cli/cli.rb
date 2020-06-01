@@ -19,10 +19,19 @@ class CLI
 
     def main
         print_games
+        more_information
     end
 
     def print_games
         Game.sort_games
         Game.all.each.with_index(1) {|game, i| puts "#{i}. #{game.name}"}
+    end
+
+    def more_information
+        puts "Select a number from the list to get more information:"
+
+        game_selection = gets.chomp
+
+        API.get_game_details(game_selection)
     end
 end
