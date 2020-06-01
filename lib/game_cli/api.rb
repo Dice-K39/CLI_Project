@@ -36,12 +36,20 @@ class API
 
             Game.all[game_selection.to_i - 1].description = data["description"]
             Game.all[game_selection.to_i - 1].released = data["released"]
-            Game.all[game_selection.to_i - 1].metacritic_rating = data["metacritic"]
-            Game.all[game_selection.to_i - 1].recommended_rating = data["ratings"][0]["percent"] unless data["ratings"][0]["percent"] == nil
-            Game.all[game_selection.to_i - 1].exceptional_rating = data["ratings"][1]["percent"] unless data["ratings"][1]["percent"] == nil
-            Game.all[game_selection.to_i - 1].meh_rating = data["ratings"][2]["percent"] unless data["ratings"][2]["percent"] == nil
-            binding.pry
-            Game.all[game_selection.to_i - 1].skip_rating = data["ratings"][3]["percent"] unless data["ratings"][3]["percent"] == nil
+            Game.all[game_selection.to_i - 1].metacritic_rating = data["metacritic"] unless data["metacritic"] == nil
+
+            data["ratings"].each do |rating|
+                case rating["title"]
+                when "recommended"
+                    Game.all[game_selection.to_i - 1].recommended_rating = rating["percent"] unless rating["percent"] == nil
+                when "exceptional"
+                    Game.all[game_selection.to_i - 1].exceptional_rating = rating["percent"] unless rating["percent"] == nil
+                when "meh"
+                    Game.all[game_selection.to_i - 1].meh_rating = rating["percent"] unless rating["percent"] == nil
+                when "skip"
+                    Game.all[game_selection.to_i - 1].skip_rating = rating["percent"] unless rating["percent"] == nil
+                end
+            end
         end
     end
 end

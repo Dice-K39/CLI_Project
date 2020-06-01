@@ -23,4 +23,8 @@ class Game
     def self.sort_games
         @@all.each.sort {|a, b| a.name <=> b.name}
     end
+
+    def self.clear
+        @@all.clear
+    end
 end

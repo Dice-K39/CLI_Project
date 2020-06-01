@@ -12,14 +12,20 @@ class CLI
         selection = ""
 
         until selection == "exit"
+            if selection == "new"
+                Game.clear
+            end
+
             search_query if selection == "new" || Game.all.empty?
             print_games if selection == "list" || selection == "new" || Game.all.any?
             more_information
             return_to_list_or_new_search_or_exit
 
+            selection = ""
+
             until selection == "new" || selection == "list" || selection == "exit"
                 selection = gets.chomp
-
+binding.pry
                 selection_not_an_option(selection)
             end
         end
@@ -48,14 +54,14 @@ class CLI
     end
 
     def print_game_details(game_selection)
-        puts "      Game Title: #{Game.all[game_selection.to_i - 1].name}"
-        puts "Game Description: #{Game.all[game_selection.to_i - 1].description}"
-        puts "Metacrtic Rating: #{Game.all[game_selection.to_i - 1].metacritic_rating} out of 100"
-        puts "         Ratings:"
-        puts "\t\tRecommended: #{Game.all[game_selection.to_i - 1].recommended_rating}%"
-        puts "\t\tExceptional: #{Game.all[game_selection.to_i - 1].exceptional_rating}%"
-        puts "\t\t   Mediocre: #{Game.all[game_selection.to_i - 1].meh_rating}%"
-        puts "\t\tNo Interest: #{Game.all[game_selection.to_i - 1].skip_rating}%"
+        puts "Game Title:\n#{Game.all[game_selection.to_i - 1].name}"
+        puts "Game Description:\n#{Game.all[game_selection.to_i - 1].description}"
+        puts "Metacrtic Rating:\n#{Game.all[game_selection.to_i - 1].metacritic_rating} out of 100"
+        puts "Ratings:"
+        puts "\tRecommended: #{Game.all[game_selection.to_i - 1].recommended_rating}%"
+        puts "\tExceptional: #{Game.all[game_selection.to_i - 1].exceptional_rating}%"
+        puts "\t   Mediocre: #{Game.all[game_selection.to_i - 1].meh_rating}%"
+        puts "\tNo Interest: #{Game.all[game_selection.to_i - 1].skip_rating}%"
     end
 
     def return_to_list_or_new_search_or_exit
@@ -65,6 +71,7 @@ class CLI
 
     def selection_not_an_option(selection)
         if selection != "new" || selection != "list" || selection != "exit"
+            binding.pry
             puts "Please enter \"new\" for new search, \"list\" to return to list, or \"exit\" to exit program."
         end
     end
