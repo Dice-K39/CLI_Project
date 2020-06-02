@@ -60,6 +60,7 @@ class CLI
     def print_game_details(game_selection)
         puts "Game Title:".red + "\n#{Game.all[game_selection.to_i - 1].name}"
         puts "Game Description:".red + "\n#{Game.all[game_selection.to_i - 1].description}"
+        puts "Release Date:".red + "\n#{Game.all[game_selection.to_i - 1].released}"
         puts "Metacrtic Rating:".red + "\n#{Game.all[game_selection.to_i - 1].metacritic_rating} out of 100"
         puts "Player Ratings:".red
         puts "\tRecommended:".red + " #{Game.all[game_selection.to_i - 1].recommended_rating}%"
