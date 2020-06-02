@@ -1,18 +1,13 @@
 class API
-    URL = URI("https://rawg-video-games-database.p.rapidapi.com/")
+    BASE_URL = "https://rawg-video-games-database.p.rapidapi.com/games?search="
+    DETAIL_URL = "https://rawg-video-games-database.p.rapidapi.com/games/"
 
     def self.get_games(game_title)
-        http = Net::HTTP.new(URL.host, URL.port)
-        http.use_ssl = true
-        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        title = game_title.gsub(" ", "%20")
 
-        request = Net::HTTP::Get.new("#{URL}games?search=#{game_title}")
-        request["x-rapidapi-host"] = 'rawg-video-games-database.p.rapidapi.com'
-        request["x-rapidapi-key"] = ENV["API_KEY"]
-        
-        response = http.request(request)
+        response = RestClient.get("#{BASE_URL}#{title}", headers = {"x-rapidapi-host" => "rawg-video-games-database.p.rapidapi.com", "x-rapidapi-key" => ENV["API_KEY"]})
         data = JSON.parse(response.body)
-        
+
         data["results"].each do |game|
             name = game["name"]
             slug = game["slug"]
@@ -23,15 +18,7 @@ class API
 
     def self.get_game_details(game_selection)
         if Game.all[game_selection.to_i - 1].description == nil
-            http = Net::HTTP.new(URL.host, URL.port)
-            http.use_ssl = true
-            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-            request = Net::HTTP::Get.new("#{URL}games/#{Game.all[game_selection.to_i - 1].slug}")
-            request["x-rapidapi-host"] = 'rawg-video-games-database.p.rapidapi.com'
-            request["x-rapidapi-key"] = ENV["API_KEY"]
-            
-            response = http.request(request)
+            response = RestClient.get("#{DETAIL_URL}#{Game.all[game_selection.to_i - 1].slug}", headers = {"x-rapidapi-host" => "rawg-video-games-database.p.rapidapi.com", "x-rapidapi-key" => ENV["API_KEY"]})
             data = JSON.parse(response.body)
 
             Game.all[game_selection.to_i - 1].description = data["description"]

@@ -24,11 +24,7 @@ class CLI
             loop do
                 selection = gets.chomp
 
-                if selection == "new" || selection == "list" || selection == "exit"
-                    break
-                else
-                    print_selection_not_an_option
-                end
+                selection == "new" || selection == "list" || selection == "exit" ? break : print_selection_not_an_option
             end
 
             if selection == "exit"
@@ -38,16 +34,18 @@ class CLI
     end
 
     def search_query
-        puts "Please enter a game title that you would like information on or enter a word to see what games has that word in its title:"
+        until Game.all.any?
+            puts "Please enter a game title that you would like information on or enter a word to see what games has that word in its title:"
 
-        game_title = gets.chomp
+            game_title = gets.chomp
 
-        API.get_games(game_title)
+            API.get_games(game_title)
+        end
     end
 
     def print_games
         Game.sort_games
-        Game.all.each.with_index(1) {|game, i| puts "#{i}. #{game.name}"}
+        Game.all.each.with_index(1) {|game, i| puts "#{i}".blue + ". #{game.name}"}
     end
 
     def more_information
@@ -60,14 +58,14 @@ class CLI
     end
 
     def print_game_details(game_selection)
-        puts "Game Title:\n#{Game.all[game_selection.to_i - 1].name}"
-        puts "Game Description:\n#{Game.all[game_selection.to_i - 1].description}"
-        puts "Metacrtic Rating:\n#{Game.all[game_selection.to_i - 1].metacritic_rating} out of 100"
-        puts "Player Ratings:"
-        puts "\tRecommended: #{Game.all[game_selection.to_i - 1].recommended_rating}%"
-        puts "\tExceptional: #{Game.all[game_selection.to_i - 1].exceptional_rating}%"
-        puts "\t   Mediocre: #{Game.all[game_selection.to_i - 1].meh_rating}%"
-        puts "\tNo Interest: #{Game.all[game_selection.to_i - 1].skip_rating}%"
+        puts "Game Title:".red + "\n#{Game.all[game_selection.to_i - 1].name}"
+        puts "Game Description:".red + "\n#{Game.all[game_selection.to_i - 1].description}"
+        puts "Metacrtic Rating:".red + "\n#{Game.all[game_selection.to_i - 1].metacritic_rating} out of 100"
+        puts "Player Ratings:".red
+        puts "\tRecommended:".red + " #{Game.all[game_selection.to_i - 1].recommended_rating}%"
+        puts "\tExceptional:".red + " #{Game.all[game_selection.to_i - 1].exceptional_rating}%"
+        puts "\t   Mediocre:".red + " #{Game.all[game_selection.to_i - 1].meh_rating}%"
+        puts "\tNo Interest:".red + " #{Game.all[game_selection.to_i - 1].skip_rating}%"
     end
 
     def return_to_list_or_new_search_or_exit
