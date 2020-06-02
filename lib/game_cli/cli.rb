@@ -11,7 +11,7 @@ class CLI
     def main
         selection = ""
 
-        until selection == "exit"
+        loop do
             if selection == "new"
                 Game.clear
             end
@@ -21,12 +21,18 @@ class CLI
             more_information
             return_to_list_or_new_search_or_exit
 
-            selection = ""
-
-            until selection == "new" || selection == "list" || selection == "exit"
+            loop do
                 selection = gets.chomp
-binding.pry
-                selection_not_an_option(selection)
+
+                if selection == "new" || selection == "list" || selection == "exit"
+                    break
+                else
+                    print_selection_not_an_option
+                end
+            end
+
+            if selection == "exit"
+                break
             end
         end
     end
@@ -57,7 +63,7 @@ binding.pry
         puts "Game Title:\n#{Game.all[game_selection.to_i - 1].name}"
         puts "Game Description:\n#{Game.all[game_selection.to_i - 1].description}"
         puts "Metacrtic Rating:\n#{Game.all[game_selection.to_i - 1].metacritic_rating} out of 100"
-        puts "Ratings:"
+        puts "Player Ratings:"
         puts "\tRecommended: #{Game.all[game_selection.to_i - 1].recommended_rating}%"
         puts "\tExceptional: #{Game.all[game_selection.to_i - 1].exceptional_rating}%"
         puts "\t   Mediocre: #{Game.all[game_selection.to_i - 1].meh_rating}%"
@@ -69,10 +75,7 @@ binding.pry
         puts "Type \"list\", \"new\", or \"exit\""
     end
 
-    def selection_not_an_option(selection)
-        if selection != "new" || selection != "list" || selection != "exit"
-            binding.pry
-            puts "Please enter \"new\" for new search, \"list\" to return to list, or \"exit\" to exit program."
-        end
+    def print_selection_not_an_option
+        puts "Please enter \"new\" for new search, \"list\" to return to list, or \"exit\" to exit program."
     end
 end

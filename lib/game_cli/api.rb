@@ -13,7 +13,7 @@ class API
         response = http.request(request)
         data = JSON.parse(response.body)
         
-        data["results"].each.with_index(1) do |game, i|
+        data["results"].each do |game|
             name = game["name"]
             slug = game["slug"]
 
