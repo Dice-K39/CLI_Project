@@ -16,11 +16,12 @@ class CLI
                 Game.clear
             end
 
-            search_query if selection == "new" || Game.all.empty?
-            print_games if selection == "list" || selection == "new" || Game.all.any?
+            search_query if Game.all.empty?
+            print_games if Game.all.any?
             more_information
             return_to_list_or_new_search_or_exit
 
+            # mini do while loop
             loop do
                 selection = gets.chomp
 

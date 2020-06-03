@@ -8,8 +8,8 @@ class Game
         @description = description
         @released = released
         @metacritic_rating = metacritic_rating
-        @recommended_rating = recommended_rating
-        @exceptional_rating = exceptional_rating        
+        @recommended_rating = recommended_rating       
+        @exceptional_rating = exceptional_rating
         @meh_rating = meh_rating
         @skip_rating = skip_rating
 
