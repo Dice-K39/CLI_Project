@@ -4,11 +4,15 @@ class CLI
         main
     end
 
+    def main
+       functional_cli
+    end
+
     def welcome
         puts "Welcome to the Game Search Command-line Interface using RAWG Video Games Database API."
     end
 
-    def main
+    def functional_cli
         selection = ""
 
         loop do
@@ -25,6 +29,7 @@ class CLI
             loop do
                 selection = gets.chomp
 
+                # ternary operator to break out or print selection not an option
                 selection == "new" || selection == "list" || selection == "exit" ? break : print_selection_not_an_option
             end
 
