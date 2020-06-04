@@ -1,7 +1,6 @@
 class API
     BASE_URL = "https://rawg-video-games-database.p.rapidapi.com/games?search="
     DETAIL_URL = "https://rawg-video-games-database.p.rapidapi.com/games/"
-    authentication = 
 
     def self.get_games(game_title)
         title = game_title.gsub(" ", "%20") # replaces spaces with ASCII encoding for space
