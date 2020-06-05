@@ -77,4 +77,4 @@ Type "list" to go back to the list of results, "new" to look for other games, or
 
 # Short Explanation of How this Application Works
 
-This application uses the REST Client to pull information from an api database. The application uses two get requests to get information. The first gets retrieves the titles that are similar to what the user typed. The second get request retrieves the detailed information of the specific game that the user want more information about.
+This application uses the REST Client to pull information from an api database. The application uses two get requests to get information. The first get retrieves the titles that are similar to what the user typed. The second get request retrieves the detailed information of the specific game that the user want more information about.
