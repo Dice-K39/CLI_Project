@@ -6,9 +6,9 @@ This application is for the Flatiron CLI Data Gem Portfolio Project. This applic
 
 You will need these gems to get this application to work properly:
 
-'gem "rest-client"'
-'gem "json"'
-'gem "colorize"'
+    gem "rest-client"
+    gem "json"
+    gem "colorize"
 
 To install these gems type "bundle install" in your terminal or type gem get "gem_name" to install them individually. 
 
