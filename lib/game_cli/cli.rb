@@ -5,14 +5,14 @@ class CLI
     end
 
     def main
-       functional_cli
+       game_information_start
     end
 
     def welcome
         puts "Welcome to the Game Search Command-line Interface using RAWG Video Games Database API."
     end
 
-    def functional_cli
+    def game_information_start
         selection = ""
 
         loop do
