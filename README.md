@@ -2,7 +2,7 @@
 
 This application is for the Flatiron CLI Data Gem Portfolio Project. This application will be using the RAWG Video Games Database API to get detailed information about popular games of all platforms.
 
-# Getting Started
+## Getting Started
 
 You will need these gems to get this application to work properly:
 
@@ -10,13 +10,13 @@ You will need these gems to get this application to work properly:
     gem "json"
     gem "colorize"
 
-To install these gems type "bundle install" in your terminal or type gem get "gem_name" to install them individually. 
+To install these gems type "bundle install" in your terminal or type gem get "gem_name" to install them individually.
 
-Also you will need an API key from https://www.rapidapi.com. Register for the site. Then search for RAWG Video Games Database on the search bar to find the api quickly. Once you are in the RAWG API section, you will find the API key in the middle section under the "Header Parameters."
+Also you will need an API key from [RapidApi](https://www.rapidapi.com). Register for the site. Then search for RAWG Video Games Database on the search bar to find the api quickly. Once you are in the RAWG API section, you will find the API key in the middle section under the "Header Parameters."
 
-# Running the Application
+## Running the Application
 
-Type bin/run from the application's main folder to start the application. 
+Type bin/run from the application's main folder to start the application.
 
     ~/.../Projects/CLI_Project // ♥ > bin/run
 
@@ -73,8 +73,8 @@ Select a number to see detailed information about the chosen game.
     Would you like to go back to the game list, start a new search, or exit?
     Type "list", "new", or "exit"'
 
-Type "list" to go back to the list of results, "new" to look for other games, or "exit" to exit the application. 
+Type "list" to go back to the list of results, "new" to look for other games, or "exit" to exit the application.
 
-# Short Explanation of How this Application Works
+## Short Explanation of How this Application Works
 
 This application uses the REST Client to pull information from an api database. The application uses two get requests to get information. The first get retrieves the titles that are similar to what the user typed. The second get request retrieves the detailed information of the specific game that the user want more information about.
