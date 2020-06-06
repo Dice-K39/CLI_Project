@@ -1,5 +1,5 @@
 class API
-    BASE_URL = "https://rawg-video-games-database.p.rapidapi.com/games?search="
+    BASE_URL = "https://rawg-video-games-database.p.rapidapi.com/games?page_size=40&search="
     DETAIL_URL = "https://rawg-video-games-database.p.rapidapi.com/games/"
 
     def self.get_games(game_title)
