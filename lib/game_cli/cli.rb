@@ -31,7 +31,7 @@ class CLI
 
             # mini do while loop
             loop do
-                selection = gets.chomp
+                selection = gets.chomp.downcase
 
                 # ternary operator to break out or print selection not an option
                 selection == "new" || selection == "list" || selection == "exit" ? break : print_selection_not_an_option
@@ -99,6 +99,6 @@ class CLI
     end
 
     def print_selection_not_an_option
-        puts "Please enter \"new\" for new search, \"list\" to return to list, or \"exit\" to exit program."
+        puts "Please enter \"list\" to return to list, \"new\" for new search,or \"exit\" to exit program."
     end
 end

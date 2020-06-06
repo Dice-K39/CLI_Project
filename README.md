@@ -12,7 +12,7 @@ You will need these gems to get this application to work properly:
 
 To install these gems type "bundle install" in your terminal or type gem get "gem_name" to install them individually. 
 
-Also you will need an API key from https://www.rapidapi.com. Register for the site. Then search for RAWG Video Games Database on the search bar to find the api quickly. Once you are in the RAWG API section, you will find the API key in the middle section under the "Header Parameters." If you do not want to type it in you, you will be able to copy it from the code snippet on the right side.
+Also you will need an API key from https://www.rapidapi.com. Register for the site. Then search for RAWG Video Games Database on the search bar to find the api quickly. Once you are in the RAWG API section, you will find the API key in the middle section under the "Header Parameters."
 
 # Running the Application
 
