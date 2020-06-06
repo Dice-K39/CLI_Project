@@ -50,8 +50,10 @@ class CLI
             game_title = gets.chomp
 
             API.get_games(game_title)
-            
-            if Game.all.any? {|game| game.name.include?(game_title.capitalize)} == false
+
+            title = game_title.split.each {|word| word.capitalize!}.join(" ")
+
+            if Game.all.any? {|game| game.name.include?(title)} == false
                 Game.clear
             end
         end
