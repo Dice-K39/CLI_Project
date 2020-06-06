@@ -9,7 +9,9 @@ class CLI
     end
 
     def welcome
-        puts "Welcome to the Game Search Command-line Interface using RAWG Video Games Database API."
+        puts "============================================================================================"
+        puts "Welcome to the Video Game Search Command-line Interface using RAWG Video Games Database API."
+        puts "============================================================================================"
     end
 
     def game_information_start
@@ -41,7 +43,7 @@ class CLI
 
     def search_query
         until Game.all.any?
-            puts "Please enter a game title that you would like information on or enter a word to see what games has that word in its title:"
+            puts "\nPlease enter a game title that you would like information on or enter a word to see what games has that word in its title:"
 
             game_title = gets.chomp
 
@@ -57,6 +59,8 @@ class CLI
         puts "Select a number from the list to get more information about the game:"
 
         game_selection = gets.chomp
+
+        puts ""
 
         API.get_game_details(game_selection)
         print_game_details(game_selection)
