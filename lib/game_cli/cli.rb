@@ -12,6 +12,8 @@ class CLI
         puts "============================================================================================"
         puts "Welcome to the Video Game Search Command-line Interface using RAWG Video Games Database API."
         puts "============================================================================================"
+
+        sleep 1
     end
 
     def game_information_start
