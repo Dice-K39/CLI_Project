@@ -50,7 +50,6 @@ class CLI
     end
 
     def print_games
-        Game.sort_games
         Game.all.each.with_index(1) {|game, i| puts "#{i}".blue + ". #{game.name}"}
     end
 
