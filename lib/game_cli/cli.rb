@@ -50,6 +50,10 @@ class CLI
             game_title = gets.chomp
 
             API.get_games(game_title)
+            
+            if Game.all.any? {|game| game.name.include?(game_title.capitalize)} == false
+                Game.clear
+            end
         end
     end
 
