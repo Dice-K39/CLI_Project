@@ -45,8 +45,8 @@ class CLI
 
     def search_query
         until Game.all.any?
-            puts "\nPlease enter a game title that you would like information on or enter a word to see what games has that word in its title:"
-
+            puts "\nPlease enter a game title that you would like information on or enter a word to see what games has that word in its title."
+            puts "Press enter for a default list of titles:"
             game_title = gets.chomp
 
             API.get_games(game_title)
