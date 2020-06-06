@@ -61,23 +61,36 @@ class CLI
         puts "Select a number from the list to get more information about the game:"
 
         game_selection = gets.chomp
-
+        
         puts ""
+        
+        if valid_number?(game_selection)
+            API.get_game_details(game_selection)
+            print_game_details(game_selection)
+        else
+            more_information
+        end
+    end
 
-        API.get_game_details(game_selection)
-        print_game_details(game_selection)
+    def valid_number?(game_selection)
+        if game_selection.to_i <= 0 || game_selection.to_i > 40
+            puts "Invalid selection.".red
+            false
+        else 
+            true
+        end
     end
 
     def print_game_details(game_selection)
-        puts "Game Title:".red + "\n#{Game.all[game_selection.to_i - 1].name}"
-        puts "Game Description:".red + "\n#{Game.all[game_selection.to_i - 1].description}"
-        puts "Release Date:".red + "\n#{Game.all[game_selection.to_i - 1].released}"
-        puts "Metacrtic Rating:".red + "\n#{Game.all[game_selection.to_i - 1].metacritic_rating} out of 100"
-        puts "Player Ratings:".red
-        puts "\tRecommended:".red + " #{Game.all[game_selection.to_i - 1].recommended_rating}%"
-        puts "\tExceptional:".red + " #{Game.all[game_selection.to_i - 1].exceptional_rating}%"
-        puts "\t   Mediocre:".red + " #{Game.all[game_selection.to_i - 1].meh_rating}%"
-        puts "\tNo Interest:".red + " #{Game.all[game_selection.to_i - 1].skip_rating}%"
+        puts "Game Title:".blue + "\n#{Game.all[game_selection.to_i - 1].name}"
+        puts "Game Description:".blue + "\n#{Game.all[game_selection.to_i - 1].description}"
+        puts "Release Date:".blue + "\n#{Game.all[game_selection.to_i - 1].released}"
+        puts "Metacrtic Rating:".blue + "\n#{Game.all[game_selection.to_i - 1].metacritic_rating} out of 100"
+        puts "Player Ratings:".blue
+        puts "\tRecommended:".blue + " #{Game.all[game_selection.to_i - 1].recommended_rating}%"
+        puts "\tExceptional:".blue + " #{Game.all[game_selection.to_i - 1].exceptional_rating}%"
+        puts "\t   Mediocre:".blue + " #{Game.all[game_selection.to_i - 1].meh_rating}%"
+        puts "\tNo Interest:".blue + " #{Game.all[game_selection.to_i - 1].skip_rating}%"
     end
 
     def return_to_list_or_new_search_or_exit
