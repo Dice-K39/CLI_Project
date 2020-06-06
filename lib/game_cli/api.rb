@@ -23,7 +23,7 @@ class API
             response = RestClient.get("#{DETAIL_URL}#{game.slug}", headers = {"x-rapidapi-host" => "rawg-video-games-database.p.rapidapi.com", "x-rapidapi-key" => ENV["API_KEY"]})
             data = JSON.parse(response.body)
 
-            game.description = data["description"]
+            game.description = data["description"].gsub("<p>", "").gsub("</p>", "").gsub("<br>", "").gsub("<br />", "")
             game.released = data["released"]
             game.metacritic_rating = data["metacritic"] unless data["metacritic"] == nil # default to 0 if no data
 
